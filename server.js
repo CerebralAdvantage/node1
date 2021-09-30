@@ -12,15 +12,26 @@ const fileInit = (fileName, initVal) => {
   return retVal;
 }
 
+const getID = () => {
+  let ID = JSON.parse(fs.readFileSync("IDs.txt","utf8"));
+  ID++;
+  fs.writeFileSync("IDs.txt", JSON.stringify(ID));
+  return ID;
+}
+
 let nameList = fileInit("names.txt", []);
 let ID = fileInit("IDs.txt", 0);
 
-
 const server = http.createServer((req, res) => {
-  res.end("<h1>Hello</h1>");
+
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(nameList));
+
 });
 
 server.listen(3000,() => {
   console.log("listening on port 3000");
 })
+
+
 
