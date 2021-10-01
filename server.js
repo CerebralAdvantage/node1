@@ -28,7 +28,6 @@ const server = http.createServer((req, res) => {
     res.end(JSON.stringify(nameList));
   }
   if (req.method.toUpperCase() === "POST") {
-console.log(req);
     res.setHeader('Content-Type', 'text/html');
     res.end("<h1>Post.</h1>");
   }
