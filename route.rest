@@ -1,11 +1,11 @@
-GET http://localhost:3000/
+GET http://localhost:3000/items
 
 ###
 
-DELETE http://localhost:3000/
+DELETE http://localhost:3000/items
 
 ###
 
-POST http://localhost:3000/items/9
+POST http://localhost:3000/items
 
-{"name":"jess"}
+[{"name":"jess"},{"name":"jesse"},{"name":"jessie"},{"name":"jessy"}]
