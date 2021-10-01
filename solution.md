@@ -39,7 +39,7 @@ docker start johnny
 in this case "johnny" was the name (--name) that we assigned, above.
 
 ======================================
-To test the server locally:
+To test the server, locally and in the docker container:
 1. at the cmd line, type 
 node server.js
 
@@ -48,10 +48,21 @@ node server.js
 3. in VS Code, open the text file "route.rest" you should be able to
 send requests to the URL by clicking on the words "Send Request", in grey lettering.
 
+4. if you are running in a docker container and have mapped a local port to the port exposed by the docker image, simply make sure you are using your local port number.
+> docker build --tag jammy .
+> docker run -p 4000:3000 --name Armistead -d jammy
+
+I have mapped 'local' port 4000 to the port that the running docker uimage has exposed, so in my route.rest file I would change
+GET http://localhost:3000/items
+(which worked fine when I was running from my command line), to
+GET http://localhost:4000/items
+And the http "send request"s should work fine.
+
 
 When run, this code creates two files: names.txt and IDs.txt
 unless they already exist, in which case it uses them for long-term
-ad-hoc persistent storage.
+ad-hoc persistent storage.  Currently, only the IDs are utilized in this manner,
+but it should be trivial to save and restore the list of name items.
 
 
 
