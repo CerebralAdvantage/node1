@@ -1,5 +1,12 @@
 const fs = require('fs')
 
+const getPath = (req) => {
+  let path = req.url.split("/");
+  while(path[0] === "") path.shift();
+  if(path[path.length-1] === "") path.pop();
+  return path;
+}
+
 const fileInit = (fileName, initVal) => {
   let retVal;
   if (fs.existsSync(fileName)) {
@@ -41,6 +48,7 @@ const getPostData = (req) => {
 }
 
 module.exports = {
+  getPath,
   fileInit,
   getID,
   nameList,
